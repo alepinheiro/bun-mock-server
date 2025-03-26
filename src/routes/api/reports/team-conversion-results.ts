@@ -1,6 +1,6 @@
 import { addCORSHeaders } from "@/helpers/addCors";
 import { fakeData } from "@/helpers/faker";
-import { type BunRequest } from "bun";
+import type { BunRequest } from "bun";
 
 export const teamConversionResults = async (req: BunRequest) => {
   const results = [];
@@ -8,6 +8,9 @@ export const teamConversionResults = async (req: BunRequest) => {
   while (results.length < total) {
     results.push({
       teamId: fakeData.string.uuid(),
+      teamName: fakeData.lorem.word(),
+      teamColor: fakeData.color.human(),
+      conversion: fakeData.number.int({ min: 0, max: 100 }),
       approvedTotal: fakeData.number.int({ min: 0, max: 500 }),
       effectiveTotal: fakeData.number.int({ min: 0, max: 500 }),
       foldersTotal: fakeData.number.int({ min: 0, max: 500 }),
