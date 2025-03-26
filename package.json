@@ -1,0 +1,19 @@
+{
+  "name": "odin-mock-server",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@faker-js/faker": "^9.6.0",
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "scripts": {
+    "dev": "bun run index.ts"
+  },
+  "dependencies": {
+    "zod": "^3.24.2"
+  }
+}
