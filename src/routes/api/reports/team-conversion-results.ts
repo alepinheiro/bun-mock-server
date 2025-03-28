@@ -9,7 +9,7 @@ export const teamConversionResults = async (req: BunRequest) => {
     results.push({
       teamId: fakeData.string.uuid(),
       teamName: fakeData.lorem.word(),
-      teamColor: fakeData.color.human(),
+      teamColor: fakeData.color.rgb(),
       conversion: fakeData.number.int({ min: 0, max: 100 }),
       approvedTotal: fakeData.number.int({ min: 0, max: 500 }),
       effectiveTotal: fakeData.number.int({ min: 0, max: 500 }),

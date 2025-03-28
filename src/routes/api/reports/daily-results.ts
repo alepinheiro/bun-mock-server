@@ -8,9 +8,10 @@ export const dailyResults = async (
 ) => {
   const results = [];
   const { page, pageSize } = getQueryParams(req);
-  const total = 100;
 
-  while (results.length < total) {
+  const TOTAL_ITEMS = 100;
+
+  while (results.length < TOTAL_ITEMS) {
     results.push({
       id: fakeData.string.uuid(),
       name: fakeData.person.fullName(),
@@ -30,12 +31,17 @@ export const dailyResults = async (
       targetProgress: fakeData.number.float({ min: 0, max: 100 }),
     });
   }
+
+  const startIndex = (page - 1) * pageSize;
+  const endIndex = page * pageSize;
+  const paginatedResults = results.slice(startIndex, endIndex);
+
   const res = new Response(
     JSON.stringify({
-      total,
-      data: results,
-      current_page: page ?? 1,
-      per_page: pageSize ?? 30,
+      data: paginatedResults,
+      total: TOTAL_ITEMS,
+      currentPage: page,
+      perPage: pageSize,
     }),
     {
       headers: { "Content-Type": "application/json" },
